@@ -41,7 +41,7 @@ const Pages = ({ handleWs }: any) => {
   useHotkeys('ctrl+alt+y', () => setOpen(!open));
   return (
     <>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <ScrollToTop />
         {handleWs}
         <MessageBar />
@@ -78,7 +78,14 @@ const Pages = ({ handleWs }: any) => {
           <Route
             path="*"
             element={
-              <Link style={{ textDecoration: 'none' }} to="/#/.">
+              <Link
+                onLoad={() => {
+                  console.log('loaded');
+                  window.location.href += '#/./';
+                }}
+                style={{ textDecoration: 'none' }}
+                to="#/./"
+              >
                 Home
               </Link>
             }
